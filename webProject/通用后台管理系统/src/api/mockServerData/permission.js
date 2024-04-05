@@ -8,8 +8,9 @@ export default {
       return {
         code: 20000,
         data: {
-          name: "超级管理员",
+          name: "有马公生",
           img: "https://unimap.wingzero.tw/unipic/14316619705299.jpg",
+          access: "超级管理员",
           menu: [
             {
               path: '/home',
@@ -63,6 +64,7 @@ export default {
         data: {
           name: "我是香奈美的狗",
           img: "https://lh4.googleusercontent.com/proxy/lj5c9pea5kfx0QpzpRwhkuWmEv9G1VPajvb2OKkJHTDzRMlE3ZVqvqOPJLmsmtDz-5pZjLUTLGHrLfkb4AjywwTscOVxSUZS-jD2ZxxF_H74c8HB6GeGcwpDkRbkHxNsUNxQ9Ky0nGBWrbrHVIQEyQ",
+          access: "普通用户",
           menu: [
             {
               path: '/home',

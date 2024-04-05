@@ -51,10 +51,11 @@ export default {
 
               Cookie.set('token', data.data.token)
               // console.log('菜单内容', data.data.menu)
-              Cookie.set('menu', JSON.stringify(data.data.menu))
+             
               var userinfo = {}
               userinfo.name = data.data.name
               userinfo.img = data.data.img
+              userinfo.access = data.data.access
              
               this.$store.commit('updatedUserInfo', userinfo)
               this.$store.commit('updateMenu', data.data.menu)

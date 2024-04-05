@@ -77,6 +77,7 @@ router.beforeEach(
         // console.log(from, to)
         // console.log(Cookies.get('token'))
         if(Cookies.get('token') != null) {
+            console.log("有token")
             if(to.path == '/login'){
                 next(from)
             }
@@ -91,6 +92,7 @@ router.beforeEach(
             }
         }
         else {
+            console.log("无token")
             if(to.path == '/login'){
                 next()
             }

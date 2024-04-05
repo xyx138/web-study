@@ -6,7 +6,7 @@
           <img  :src="img_url" >
           <div class="userinfo">
             <p class="name">{{ userName }}</p>
-            <p class="access">用户</p>
+            <p class="access">{{ access }}</p>
           </div>
         </div>
         <div class="login-info">
@@ -112,6 +112,7 @@ export default {
     ...mapState({
             img_url: state => state.userInfo.infos.img,
             userName: state => state.userInfo.infos.name,
+            access: state => state.userInfo.infos.access,
         })
   },
 

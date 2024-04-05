@@ -2,7 +2,8 @@ export default{
     state: {
         infos:{
             name: "",
-            img: ""
+            img: "",
+            access: "",
         }
     },
 

@@ -47,11 +47,18 @@ export default {
         if(valid){
           getMenu(this.loginInfo).then(({data}) =>{
             if(data.code == 20000){
+              console.log("打印data.data" ,data.data)
+
               Cookie.set('token', data.data.token)
-              console.log('菜单内容', data.data.menu)
+              // console.log('菜单内容', data.data.menu)
               Cookie.set('menu', JSON.stringify(data.data.menu))
+              var userinfo = {}
+              userinfo.name = data.data.name
+              userinfo.img = data.data.img
+             
+              this.$store.commit('updatedUserInfo', userinfo)
               this.$store.commit('updateMenu', data.data.menu)
-    
+              
               this.$router.push('/home')
             }
             else{

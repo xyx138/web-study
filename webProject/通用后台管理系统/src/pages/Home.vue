@@ -3,10 +3,10 @@
     <el-col :span="8">
       <el-card class="box-card">
         <div class="user">
-          <img src="../assets/images/六花.jpg" alt="">
+          <img  :src="img_url" >
           <div class="userinfo">
-            <p class="name">Admin</p>
-            <p class="access">超级管理员</p>
+            <p class="name">{{ userName }}</p>
+            <p class="access">用户</p>
           </div>
         </div>
         <div class="login-info">
@@ -57,7 +57,7 @@
 <script>
 import {getData} from '../api'
 import * as echarts from 'echarts'
-
+import { mapState } from 'vuex'
 export default {
   data(){
     return {
@@ -108,6 +108,13 @@ export default {
       ],
     }
   },
+  computed:{
+    ...mapState({
+            img_url: state => state.userInfo.infos.img,
+            userName: state => state.userInfo.infos.name,
+        })
+  },
+
   mounted(){
     getData().then(
       ({ data }) => {
@@ -220,7 +227,8 @@ export default {
       }
     )
 
-      
+      console.log(this.userName)
+    
   },
   
 }

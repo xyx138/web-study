@@ -8,6 +8,8 @@ export default {
       return {
         code: 20000,
         data: {
+          name: "超级管理员",
+          img: "https://unimap.wingzero.tw/unipic/14316619705299.jpg",
           menu: [
             {
               path: '/home',
@@ -59,6 +61,8 @@ export default {
       return {
         code: 20000,
         data: {
+          name: "我是香奈美的狗",
+          img: "https://lh4.googleusercontent.com/proxy/lj5c9pea5kfx0QpzpRwhkuWmEv9G1VPajvb2OKkJHTDzRMlE3ZVqvqOPJLmsmtDz-5pZjLUTLGHrLfkb4AjywwTscOVxSUZS-jD2ZxxF_H74c8HB6GeGcwpDkRbkHxNsUNxQ9Ky0nGBWrbrHVIQEyQ",
           menu: [
             {
               path: '/home',
@@ -68,11 +72,24 @@ export default {
               url: 'Home.vue'
             },
             {
-              path: '/video',
-              name: 'video',
-              label: '商品管理',
-              icon: 'video-play',
-              url: 'Mall.vue'
+              label: '其他',
+              icon: 'location',
+              children: [
+                {
+                  path: '/page1',
+                  name: 'page1',
+                  label: '页面1',
+                  icon: 'setting',
+                  url: 'PageOne.vue'
+                },
+                {
+                  path: '/page2',
+                  name: 'page2',
+                  label: '页面2',
+                  icon: 'setting',
+                  url: 'PageTwo.vue'
+                }
+              ]
             }
           ],
           token: Mock.Random.guid(),

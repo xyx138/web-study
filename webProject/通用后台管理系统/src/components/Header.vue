@@ -10,7 +10,7 @@
             <el-dropdown  @command="handleClick">
                 <span class="el-dropdown-link">
                     <div>
-                        <img class="user" src='../assets/images/六花.jpg' alt="">
+                        <img class="user" :src="img_url" alt="">
                     </div>
                 </span>
                 <el-dropdown-menu slot="dropdown" >
@@ -34,14 +34,15 @@ export default {
         handleClick(command){
             if(command === 'logout'){
                 Cookie.remove('token')
-                Cookie.remove('menu')
+                sessionStorage.clear();
                 this.$router.replace('/login')
             }
         }
     },
     computed:{
         ...mapState({
-            tabs : state => state.tab.tabsList
+            tabs : state => state.tab.tabsList,
+            img_url: state => state.userInfo.infos.img,
         })
     },
 }

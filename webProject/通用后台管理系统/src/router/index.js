@@ -10,7 +10,7 @@ import Page1 from "@/pages/Page1.vue";
 import Page2 from "@/pages/Page2.vue";
 import Login from "@/pages/Login.vue";
 import Cookies from "js-cookie";
-
+import store from '../store'
 Vue.use(VueRouter)
 
 
@@ -79,6 +79,12 @@ router.beforeEach(
         if(Cookies.get('token') != null) {
             if(to.path == '/login'){
                 next(from)
+            }
+            else if(to.path == '/user' || to.path == 'mall'){
+                if(store.state.menu.Menu.length === 4){
+                    next()
+                }
+                else next(from)
             }
             else{
                 next()

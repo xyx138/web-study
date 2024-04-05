@@ -65,7 +65,7 @@ export default {
       return this.$store.state.tab.isCollapse
     },
     menuData(){
-     return   JSON.parse(Cookie.get('menu')) || this.$store.state.menu.Menu
+     return  this.$store.state.menu.Menu
     }
   },
   mounted(){

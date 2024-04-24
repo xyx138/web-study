@@ -38,7 +38,11 @@
     <!-- 头部 -->
     <div class="users-header"
       style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
-      <el-button type="primary" @click="showDialog">+ 新增</el-button>
+      <div>
+        <el-button type="primary" @click="showDialog">+ 新增</el-button>
+        <el-button type="warning" @click="exportExcel" > 导出</el-button>
+      </div>
+
       <el-form :model="searchForm" :inline="true" style="margin-top: 15px">
         <el-form-item>
           <el-input v-model="searchForm.name" placeholder="请输入要搜索的姓名"></el-input>
@@ -49,9 +53,11 @@
       </el-form>
     </div>
 
+
+
     <!-- 用户信息列表 -->
     <div class="table-list" style="height: 80vh ; background: #fff;">
-      <el-table :data="tableData" style="width: 100%" height="85%">
+      <el-table :data="tableData" style="width: 100%" height="85%" id="out-table">
 
         <el-table-column prop="name" label="姓名" width="180">
         </el-table-column>
@@ -88,6 +94,8 @@
 
 <script>
 import { getUser, addUser, delUser, editUser } from '../api'
+import FileSaver from 'file-saver';
+import XLSX from "xlsx"
 
 export default {
   data() {
@@ -147,13 +155,37 @@ export default {
   // },
 
   methods: {
-    handleClose(done) {
-      this.$confirm('确认关闭？')
-        .then(_ => {
-          done();
-        })
-        .catch(_ => { });
+    // 导出excel
+     //定义导出Excel表格事件
+     exportExcel() {
+      var xlsxParam = { raw: true };
+      /* 从表生成工作簿对象 */
+      var wb = XLSX.utils.table_to_book(
+        document.querySelector("#out-table"),
+        xlsxParam
+      );
+      /* 获取二进制字符串作为输出 */
+      var wbout = XLSX.write(wb, {
+        bookType: "xlsx",
+        bookSST: true,
+        type: "array",
+      });
+      try {
+        FileSaver.saveAs(
+          //Blob 对象表示一个不可变、原始数据的类文件对象。
+          //Blob 表示的不一定是JavaScript原生格式的数据。
+          //File 接口基于Blob，继承了 blob 的功能并将其扩展使其支持用户系统上的文件。
+          //返回一个新创建的 Blob 对象，其内容由参数中给定的数组串联组成。
+          new Blob([wbout], { type: "application/octet-stream" }),
+          //设置导出文件名称
+          "用户列表.xlsx"
+        );
+      } catch (e) {
+        if (typeof console !== "undefined") console.log(e, wbout);
+      }
+      return wbout;
     },
+
 
     // 新增按钮
     showDialog() {
